@@ -1,0 +1,103 @@
+\documentclass{report}
+%%********************************(Packages)********************************
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[bidi=basic]{babel}
+\usepackage{matlab-prettifier}
+\usepackage{algorithm,algpseudocode}
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\usepackage[hidelinks]{hyperref}
+\usepackage{amsmath}
+%%********************************(Packages)********************************
+
+%%********************************(Hebrew)**********************************
+\babelprovide[main,import]{hebrew}
+\babelfont[hebrew]{rm}{David CLM}
+\babelfont[hebrew]{sf}{Simple CLM}
+\babelfont[hebrew]{tt}{Miriam CLM}
+%%********************************(Hebrew)**********************************
+
+%%********************************(Preamble)********************************
+\definecolor{braude}{rgb}{0.1647,0.15294,0.396}
+\addbibresource{bibliography.bib}
+%%********************************(Preamble)********************************
+
+\begin{document}
+\begin{center}
+    \includegraphics[scale=0.15]{figs/braude.png}\\\smallskip
+    \textcolor{braude}{המחלקה למתמטיקה\\\vspace{1.5mm}\(Department\;of\;Mathematics\)}\\\vspace{20mm}
+    {\large פרויקט מסכם לתואר בוגר במדעים \(\left(B.Sc\right)\) במתמטיקה שימושית}\\\vspace{23mm}
+    {\LARGE כאוס אינטרינזי במערכות\\ביולוגיות של מין יחיד}\\\medskip
+    {\large שהם שמיר}\\\vspace{9mm}
+    {\LARGE \(Intrinsic\;Chaos\;in\;Single\;Species\)\\\(Biological\;Systems\)}\\\medskip
+    {\large  \(Shoham\;Shamir\)}\\\vspace{30mm}
+    מנחה:\hfill :\(Advisor\)\\
+    פרופ״ח חגי כתריאל\hfill \(Assoc.\,Prof.\:\:Haggai\;Katriel\)\\\vfill
+    \(2023\)
+\end{center}
+\thispagestyle{empty}
+\newpage
+\pagenumbering{Roman}\setcounter{page}{1}
+
+\newpage
+
+\tableofcontents
+\listoffigures
+\newpage
+\pagenumbering{arabic}\setcounter{page}{1}
+\part{הקדמה}
+\chapter{מידול מערכות}
+\chapter{רקע מתמטי}
+\section{מערכות דינמיות לא-לינאריות}
+\section{שיטת רונגה-קוטה}
+\section{מרחב פאזה}
+\subsection{נקודות שיווי משקל}
+\subsection{לינאריזציה}
+\subsection{יציבות של נקודות שיווי משקל}
+\section{מעריכי ליאפונוב ורגישות לתנאי התחלה}
+\section{ביפורקציות}
+\subsection{סוגי הסתעפויות}
+\section{מושכים}
+\chapter{רקע ביולוגי}
+
+\part{מבוא ותיאור מתמטי}
+\chapter{מודל המערכת}
+\section{סימולים}
+\section{משוואות אפיון השלבים}
+\section{מצבי המערכת}
+
+\part{שיטות ותוצאות חקר המערכת}
+\chapter{מבחן 1–0 לכאוס}
+\section{פיתוח}
+\section{תוצרים}
+\section{תוצאות}
+\chapter{הסתעפויות}
+\section{יישום}
+\section{דיאגרמת ביפורקציות}
+\chapter{מעריכי ליאפונוב וממד}
+\section{מִקְשֶׁתֶת ליאפונוב}
+\subsection{חישוב הערכים}
+\subsection{תוצאות נומריות}
+\section{שיעור קפלן-ירוק}
+שיעור קפלן-יורק הינה דרך לחישוב ממד המושך בצורה מקורבת באמצעות מעריכי ליאפונוב. החישוב מבוצע כמתואר בשלבים הבאים:
+\begin{enumerate}
+    \item סידור המעריכים בסדר לא עולה: \[\lambda_1\geq\lambda_2\geq\ldots\geq\lambda_n\]
+    \item סכימת הערכים, כל עוד הסכום אי-שלילי ומציאת האינדקס- \(j\) המתאים לכך: \[\sum_{i=1}^{j}\lambda_i\geq0,\;\sum_{i=1}^{j+1}\lambda_i<0\]
+    \item חישוב ממד לפי נוסחת קפלן-יורק: \[D_{KY}=j+\frac{\sum\limits_{i=1}^{j}\lambda_i}{\lvert\lambda_{j+1}\rvert}\]
+\end{enumerate}
+בהרצת האלגוריתם מסעיף \(7.1.1\), כאשר- \(b_{G_2}=56,h=0.001\), התקבלו הערכים:
+\[\lambda_1=0.354,\lambda_2=0,\lambda_3=-7.089,\lambda_4=-95.295\]
+מכאן ש- \(j=2\), כלומר- \(D_{KY}=2+\frac{0.354+0}{\lvert-7.089\rvert}=2.05\) — ממד פרקטלי, האופייני למערכות כאוטיות.
+\part{אחרית דבר}
+\addcontentsline{toc}{chapter}{סיכום}
+\section*{סיכום ומסקנות}
+\addcontentsline{toc}{chapter}{מקורות}
+\section*{מקורות}
+\nocite{*}
+\begin{otherlanguage}{English}
+\printbibliography[heading=none]
+\end{otherlanguage}
+\addcontentsline{toc}{chapter}{נספחים}
+\section*{נספחים}
+
+\end{document}
