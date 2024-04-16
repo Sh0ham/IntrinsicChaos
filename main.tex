@@ -1,13 +1,14 @@
-\documentclass{report}
+\documentclass{article}
 %%********************************(Packages)********************************
 \usepackage{graphicx}
-\usepackage[dvipsnames]{xcolor}
-\usepackage[bidi=basic]{babel}
+\usepackage{amsmath}
 \usepackage{matlab-prettifier}
 \usepackage{algorithm,algpseudocode}
+\usepackage[bidi=basic]{babel}
+\usepackage{xcolor}
 \usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
 \usepackage[hidelinks]{hyperref}
-\usepackage{amsmath}
+\usepackage{tocloft}
 %%********************************(Packages)********************************
 
 %%********************************(Hebrew)**********************************
@@ -18,14 +19,27 @@
 %%********************************(Hebrew)**********************************
 
 %%********************************(Preamble)********************************
-\definecolor{braude}{rgb}{0.1647,0.15294,0.396}
+\definecolor{braude}{RGB}{42,39,101}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{3}
 \addbibresource{bibliography.bib}
+\renewcommand{\thesection}{\Roman{section}} 
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\renewcommand{\cftsubsecdotsep}{\cftnodots}
+\renewcommand\cftsecfont{\large\bfseries}
+\renewcommand\cftsubsecfont{\normalsize\bfseries}
+\renewcommand\cftsubsubsecfont{\normalsize}
+\cftsetindents{section}{0em}{2em}
+\cftsetindents{subsection}{0em}{2em}
+\cftsetindents{subsubsection}{2em}{2em}
+\setlength{\cftbeforesecskip}{1.5\baselineskip}
+\setlength{\cftbeforesubsecskip}{0.25\baselineskip}
 %%********************************(Preamble)********************************
 
 \begin{document}
 \begin{center}
     \includegraphics[scale=0.15]{figs/braude.png}\\\smallskip
-    \textcolor{braude}{המחלקה למתמטיקה\\\vspace{1.5mm}\(Department\;of\;Mathematics\)}\\\vspace{20mm}
+    \textcolor{braude}{המחלקה למתמטיקה\\\vspace{1.5mm}\(Desectionment\;of\;Mathematics\)}\\\vspace{20mm}
     {\large פרויקט מסכם לתואר בוגר במדעים \(\left(B.Sc\right)\) במתמטיקה שימושית}\\\vspace{23mm}
     {\LARGE כאוס אינטרינזי במערכות\\ביולוגיות של מין יחיד}\\\medskip
     {\large שהם שמיר}\\\vspace{9mm}
@@ -37,48 +51,68 @@
 \end{center}
 \thispagestyle{empty}
 \newpage
+\begin{abstract}
+\noindent במסגרת עבודת גמר זו נסקור מערכת ביולוגית של אוכלוסיית מין
+יחיד חד-תאית המצויה תחת תנאים מיטיבים, הכוללים מזון וללא הימצאותם
+של מינים טורפים אחרים.\\
+
+\noindent ההנחה הטבעית של השכל הישר היא כי במצב שכזה, כמות הפריטים באוכלוסיה
+תגדל עד אשר תגיע לאיזון שבין כמות הפריטים המתווספים למערכת לאלו היוצאים
+ממנה. אולם, עבור טווח ערכים של פרמטרים במערכת הנחקרת נראה כי לא כך
+המצב והמערכת תִתְיַצֵּג על מנעד רחב של התנהגויות.\\
+מנעד רחב זה ינוע החל מהיכחדותה של האוכלוסיה, דרך התייצבות על-פי מחזוריות
+מסוימת ועד הִוצרות של התנהגות כאוטית ללא אפשרות חיזוי — אך עם אפשרות
+לתובנות בתחומי הביולוגיה והרפואה.\\
+
+\noindent בארבעת הפרקים בעבודה זו נציג את הרקע ההיסטורי והתפתחות תחום
+תורת הכאוס, נבאר את המֹודל המוצע, ונפתח שיטות להוכחת הכאוטיות ואפיון
+המערכת. בסיכום נתייחס לקושי ולחשיבות שבאפיון מערכות כאלו עם יישומיות
+להמשך.
+\end{abstract}
 \pagenumbering{Roman}\setcounter{page}{1}
-
 \newpage
-
 \tableofcontents
-\listoffigures
 \newpage
+
 \pagenumbering{arabic}\setcounter{page}{1}
-\part{הקדמה}
-\chapter{מידול מערכות}
-\chapter{רקע מתמטי}
-\section{מערכות דינמיות לא-לינאריות}
-\section{שיטת רונגה-קוטה}
-\section{מרחב פאזה}
-\subsection{נקודות שיווי משקל}
-\subsection{לינאריזציה}
-\subsection{יציבות של נקודות שיווי משקל}
-\section{מעריכי ליאפונוב ורגישות לתנאי התחלה}
-\section{ביפורקציות}
-\subsection{סוגי הסתעפויות}
-\section{מושכים}
-\chapter{רקע ביולוגי}
+\section{הקדמה}
+\subsection{מידול מערכות}
+\subsection{רקע מתמטי}
+\subsubsection{מערכות דינמיות לא-לינאריות}
+\subsubsection{שיטת רונגה-קוטה}
+\subsubsection{מרחב פאזה}
+\paragraph{נקודות שיווי משקל}
+\paragraph{לינאריזציה}
+\paragraph{יציבות של נקודות שיווי משקל}
+\subsubsection{מעריכי ליאפונוב ורגישות לתנאי התחלה}
+\subsubsection{ביפורקציות}
+\paragraph{סוגי הסתעפויות}
+\subsubsection{מושכים}
+\subsection{רקע ביולוגי}
 
-\part{מבוא ותיאור מתמטי}
-\chapter{מודל המערכת}
-\section{סימולים}
-\section{משוואות אפיון השלבים}
-\section{מצבי המערכת}
+\newpage
+\section{מבוא ותיאור מתמטי}
+\setcounter{subsection}{3}
+\subsection{מודל המערכת}
+\subsubsection{סימולים}
+\subsubsection{משוואות אפיון השלבים}
+\subsubsection{מצבי המערכת}
 
-\part{שיטות ותוצאות חקר המערכת}
-\chapter{מבחן 1–0 לכאוס}
-\section{פיתוח}
-\section{תוצרים}
-\section{תוצאות}
-\chapter{הסתעפויות}
-\section{יישום}
-\section{דיאגרמת ביפורקציות}
-\chapter{מעריכי ליאפונוב וממד}
-\section{מִקְשֶׁתֶת ליאפונוב}
-\subsection{חישוב הערכים}
-\subsection{תוצאות נומריות}
-\section{שיעור קפלן-ירוק}
+\newpage
+\section{שיטות ותוצאות חקר המערכת}
+\setcounter{subsection}{4}
+\subsection{מבחן 1–0 לכאוס}
+\subsubsection{פיתוח}
+\subsubsection{תוצרים}
+\subsubsection{תוצאות}
+\subsection{הסתעפויות}
+\subsubsection{יישום}
+\subsubsection{דיאגרמת ביפורקציות}
+\subsection{מעריכי ליאפונוב וממד}
+\subsubsection{מִקְשֶׁתֶת ליאפונוב}
+\paragraph{חישוב הערכים}
+\paragraph{תוצאות נומריות}
+\subsubsection{שיעור קפלן-ירוק}
 שיעור קפלן-יורק הינה דרך לחישוב ממד המושך בצורה מקורבת באמצעות מעריכי ליאפונוב. החישוב מבוצע כמתואר בשלבים הבאים:
 \begin{enumerate}
     \item סידור המעריכים בסדר לא עולה: \[\lambda_1\geq\lambda_2\geq\ldots\geq\lambda_n\]
@@ -88,16 +122,18 @@
 בהרצת האלגוריתם מסעיף \(7.1.1\), כאשר- \(b_{G_2}=56,h=0.001\), התקבלו הערכים:
 \[\lambda_1=0.354,\lambda_2=0,\lambda_3=-7.089,\lambda_4=-95.295\]
 מכאן ש- \(j=2\), כלומר- \(D_{KY}=2+\frac{0.354+0}{\lvert-7.089\rvert}=2.05\) — ממד פרקטלי, האופייני למערכות כאוטיות.
-\part{אחרית דבר}
-\addcontentsline{toc}{chapter}{סיכום}
-\section*{סיכום ומסקנות}
-\addcontentsline{toc}{chapter}{מקורות}
-\section*{מקורות}
+
+\newpage
+\section{אחרית דבר}
+\addcontentsline{toc}{subsection}{סיכום}
+\subsubsection*{סיכום ומסקנות}
+\addcontentsline{toc}{subsection}{מקורות}
+\subsubsection*{מקורות}
 \nocite{*}
 \begin{otherlanguage}{English}
 \printbibliography[heading=none]
 \end{otherlanguage}
-\addcontentsline{toc}{chapter}{נספחים}
-\section*{נספחים}
+\addcontentsline{toc}{subsection}{נספחים}
+\subsubsection*{נספחים}
 
 \end{document}
