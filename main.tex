@@ -4,15 +4,29 @@
 \usepackage{amsmath}
 \usepackage{matlab-prettifier}
 \usepackage{algorithm,algpseudocode}
-\usepackage[bidi=basic]{babel}
-\usepackage{xcolor}
-\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
-\usepackage[hidelinks]{hyperref}
 \usepackage{tocloft}
+\usepackage{listing}
+\usepackage{minted}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{pgfplots}
+\usepackage{parskip}
+\usepackage{array}
+\usepackage{tkz-euclide}
+\usepackage{tikz}
+\usepackage{cancel}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{yhmath}
+\usepackage{xcolor}
+\usepackage[autostyle]{csquotes}
+\usepackage[hidelinks]{hyperref}
+\usepackage[english,bidi=basic]{babel}
+\usepackage[style=numeric,sorting=none,backend=biber]{biblatex}
 %%********************************(Packages)********************************
 
 %%********************************(Hebrew)**********************************
-\babelprovide[main,import]{hebrew}
+\babelprovide[import,main]{hebrew}
 \babelfont[hebrew]{rm}{David CLM}
 \babelfont[hebrew]{sf}{Simple CLM}
 \babelfont[hebrew]{tt}{Miriam CLM}
@@ -20,33 +34,43 @@
 
 %%********************************(Preamble)********************************
 \definecolor{braude}{RGB}{42,39,101}
+\addbibresource{bibliography.bib}
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{3}
-\addbibresource{bibliography.bib}
 \renewcommand{\thesection}{\Roman{section}} 
 \renewcommand{\thesubsection}{\arabic{subsection}}
 \renewcommand{\cftsubsecdotsep}{\cftnodots}
-\renewcommand\cftsecfont{\large\bfseries}
-\renewcommand\cftsubsecfont{\normalsize\bfseries}
-\renewcommand\cftsubsubsecfont{\normalsize}
 \cftsetindents{section}{0em}{2em}
 \cftsetindents{subsection}{0em}{2em}
 \cftsetindents{subsubsection}{2em}{2em}
 \setlength{\cftbeforesecskip}{1.5\baselineskip}
 \setlength{\cftbeforesubsecskip}{0.25\baselineskip}
+\setlength\bibitemsep{\baselineskip}
+\renewcommand\cftsecfont{\large\bfseries}
+\renewcommand\cftsubsecfont{\normalsize\bfseries}
+\renewcommand\cftsubsubsecfont{\normalsize}
+\renewcommand\qedsymbol{$\blacksquare$}
+\pgfplotsset{width=10cm,compat=1.9}
+\newtheorem*{theorem}{משפט}
+\newtheorem*{corollary}{מסקנה}
+\newtheorem*{lemma}{למה}
+\newtheorem*{definition}{הגדרה}
+
 %%********************************(Preamble)********************************
 
 \begin{document}
 \begin{center}
     \includegraphics[scale=0.15]{figs/braude.png}\\\smallskip
-    \textcolor{braude}{המחלקה למתמטיקה\\\vspace{1.5mm}\(Desectionment\;of\;Mathematics\)}\\\vspace{20mm}
-    {\large פרויקט מסכם לתואר בוגר במדעים \(\left(B.Sc\right)\) במתמטיקה שימושית}\\\vspace{23mm}
-    {\LARGE כאוס אינטרינזי במערכות\\ביולוגיות של מין יחיד}\\\medskip
-    {\large שהם שמיר}\\\vspace{9mm}
-    {\LARGE \(Intrinsic\;Chaos\;in\;Single\;Species\)\\\(Biological\;Systems\)}\\\medskip
-    {\large  \(Shoham\;Shamir\)}\\\vspace{30mm}
-    מנחה:\hfill :\(Advisor\)\\
-    פרופ״ח חגי כתריאל\hfill \(Assoc.\,Prof.\:\:Haggai\;Katriel\)\\\vfill
+    \textcolor{braude}{המחלקה למתמטיקה\\\begin{otherlanguage}{English}\textit{Department of Mathematics}\end{otherlanguage}}\\\vspace{20mm}
+    {\LARGE פרויקט מסכם לתואר בוגר במדעים \begin{otherlanguage}{English}(\textit{B.Sc})\end{otherlanguage}\\במתמטיקה שימושית}\\\vspace{20mm}
+    {\fontsize{30}{36}\selectfont כאוס אינטרינזי}\\\medskip
+    {\Large \textit{שהם שמיר}}\\\vspace{10mm}
+    \begin{otherlanguage}{English}
+        {\fontsize{30}{36}\selectfont\textsc{Intrinsic Chaos}}\\\medskip
+        {\Large \textit{Shoham Shamir}}\\\vspace{35mm}
+    \end{otherlanguage}
+    מנחה:\hfill :\begin{otherlanguage}{English}\textit{Advisor}\end{otherlanguage}\\
+    פרופ״ח חגי כתריאל\hfill\begin{otherlanguage}{English}\textit{Assoc. Prof. Haggai Katriel}\end{otherlanguage}\\\vfill
     \(2023\)
 \end{center}
 \thispagestyle{empty}
@@ -54,17 +78,15 @@
 \begin{abstract}
 \noindent במסגרת עבודת גמר זו נסקור מערכת ביולוגית של אוכלוסיית מין
 יחיד חד-תאית המצויה תחת תנאים מיטיבים, הכוללים מזון וללא הימצאותם
-של מינים טורפים אחרים.\\
-
-\noindent ההנחה הטבעית של השכל הישר היא כי במצב שכזה, כמות הפריטים באוכלוסיה
+של מינים טורפים אחרים.\bigskip
+\par\noindent ההנחה הטבעית של השכל הישר היא כי במצב שכזה, כמות הפריטים באוכלוסיה
 תגדל עד אשר תגיע לאיזון שבין כמות הפריטים המתווספים למערכת לאלו היוצאים
 ממנה. אולם, עבור טווח ערכים של פרמטרים במערכת הנחקרת נראה כי לא כך
-המצב והמערכת תִתְיַצֵּג על מנעד רחב של התנהגויות.\\
+המצב והמערכת תִתְיַצֵּג על מנעד רחב של התנהגויות.\newline
 מנעד רחב זה ינוע החל מהיכחדותה של האוכלוסיה, דרך התייצבות על-פי מחזוריות
 מסוימת ועד הִוצרות של התנהגות כאוטית ללא אפשרות חיזוי — אך עם אפשרות
-לתובנות בתחומי הביולוגיה והרפואה.\\
-
-\noindent בארבעת הפרקים בעבודה זו נציג את הרקע ההיסטורי והתפתחות תחום
+לתובנות בתחומי הביולוגיה והרפואה.\bigskip
+\par\noindent בארבעת הפרקים בעבודה זו נציג את הרקע ההיסטורי והתפתחות תחום
 תורת הכאוס, נבאר את המֹודל המוצע, ונפתח שיטות להוכחת הכאוטיות ואפיון
 המערכת. בסיכום נתייחס לקושי ולחשיבות שבאפיון מערכות כאלו עם יישומיות
 להמשך.
@@ -125,15 +147,18 @@
 
 \newpage
 \section{אחרית דבר}
+\phantomsection
 \addcontentsline{toc}{subsection}{סיכום}
-\subsubsection*{סיכום ומסקנות}
+\subsection*{סיכום}
+\phantomsection
 \addcontentsline{toc}{subsection}{מקורות}
-\subsubsection*{מקורות}
-\nocite{*}
+\subsection*{מקורות}
 \begin{otherlanguage}{English}
-\printbibliography[heading=none]
+    \nocite{*}
+    \printbibliography[heading=none]
 \end{otherlanguage}
+\phantomsection
 \addcontentsline{toc}{subsection}{נספחים}
-\subsubsection*{נספחים}
+\subsection*{נספחים}
 
 \end{document}
