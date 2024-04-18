@@ -39,16 +39,17 @@
 \renewcommand{\thesection}{\Roman{section}} 
 \renewcommand{\thesubsection}{\arabic{subsection}}
 \renewcommand{\cftsubsecdotsep}{\cftnodots}
+\renewcommand\cftsecfont{\large\bfseries}
+\renewcommand\cftsubsecfont{\normalsize\bfseries}
+\renewcommand\cftsubsubsecfont{\normalsize}
+\renewcommand\qedsymbol{$\blacksquare$}
+\renewcommand{\listalgorithmname}{\begin{otherlanguage}{Hebrew}רשימת האלגוריתמים\end{otherlanguage}}
 \cftsetindents{section}{0em}{2em}
 \cftsetindents{subsection}{0em}{2em}
 \cftsetindents{subsubsection}{2em}{2em}
 \setlength{\cftbeforesecskip}{1.5\baselineskip}
 \setlength{\cftbeforesubsecskip}{0.25\baselineskip}
 \setlength\bibitemsep{\baselineskip}
-\renewcommand\cftsecfont{\large\bfseries}
-\renewcommand\cftsubsecfont{\normalsize\bfseries}
-\renewcommand\cftsubsubsecfont{\normalsize}
-\renewcommand\qedsymbol{$\blacksquare$}
 \pgfplotsset{width=10cm,compat=1.9}
 \newtheorem*{theorem}{משפט}
 \newtheorem*{corollary}{מסקנה}
@@ -60,7 +61,7 @@
 \begin{center}
     \includegraphics[scale=0.15]{figs/braude.png}\\\smallskip
     \textcolor{braude}{המחלקה למתמטיקה\\\begin{otherlanguage}{English}\textit{Department of Mathematics}\end{otherlanguage}}\\\vspace{20mm}
-    {\LARGE פרויקט מסכם לתואר בוגר במדעים \begin{otherlanguage}{English}(\textit{B.Sc})\end{otherlanguage}\\במתמטיקה שימושית}\\\vspace{20mm}
+    {\LARGE פרויקט מסכם לתואר בוגר במדעים \begin{otherlanguage}{English}(\textsc{B.Sc})\end{otherlanguage}\\במתמטיקה שימושית}\\\vspace{20mm}
     {\fontsize{30}{36}\selectfont כאוס אינטרינזי}\\\medskip
     {\Large \textit{שהם שמיר}}\\\vspace{10mm}
     \begin{otherlanguage}{English}
@@ -68,7 +69,7 @@
         {\Large \textit{Shoham Shamir}}\\\vspace{35mm}
     \end{otherlanguage}
     מנחה:\hfill :\begin{otherlanguage}{English}\textit{Advisor}\end{otherlanguage}\\
-    פרופ״ח חגי כתריאל\hfill\begin{otherlanguage}{English}\textit{Assoc. Prof. Haggai Katriel}\end{otherlanguage}\\\vfill
+    פרופ״ח חגי כתריאל\hfill\begin{otherlanguage}{English}\textit{Assoc.\hspace{0.5mm}Prof. Haggai Katriel}\end{otherlanguage}\\\vfill
     \(2023\)
 \end{center}
 \thispagestyle{empty}
@@ -92,6 +93,9 @@
 \pagenumbering{Roman}\setcounter{page}{1}
 \newpage
 \tableofcontents
+\newpage
+\listoffigures
+\listofalgorithms
 \newpage
 
 \pagenumbering{arabic}\setcounter{page}{1}
